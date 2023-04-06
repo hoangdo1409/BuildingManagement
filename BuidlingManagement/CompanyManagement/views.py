@@ -5,36 +5,29 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import CompanySerializer
-from django.http import HttpRequest
+from django.http import HttpResponse
+from django.template import loader
+from .models import *
+from django.views.generic import ListView
+from django.core.paginator import Paginator
+from django.views.generic.detail import DetailView
 
 
-class CompanyList(APIView):
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'company_list.html'
-    queryset = Company.objects.all()
+def Index(request, *args, **kwargs):
+    context = {}
+    # context['company_template'] = 'arrgon'
+    template = loader.get_template('CompanyManagement/company_list.html')
+    context = Company.objects.all()
+    return HttpResponse(template.render({'context': context}, request))
 
-    # def get(self, request):
-
-    #     query_set = self.queryset
-    #     # fileter theo request user
-    #     crr_user = self.request.user
-    #     query_set_by_request_user = query_set.filter(created_by=crr_user).all()
-    #     return Response({'companies': query_set_by_request_user})
-    #     # return render(request, 'CompanyManagement/company_list.html',query_set_by_request_user)
+def Details(request, pk, *args, **kwargs):
+    context = {}
+    # context['company_template'] = 'arrgon'
+    template = loader.get_template('CompanyManagement/detailsCompany.html')
+    context = Company.objects.filter(uuid=pk)
+    return HttpResponse(template.render({'context': context}, request))
 
 
-    def get(self, request):
-        # assert isinstance(request, HttpRequest)
-        query_set = self.queryset
-        crr_user = self.request.user
-        query_set_by_request_user = query_set.filter(created_by=crr_user).all()
-        serializer_class = CompanySerializer(query_set_by_request_user, many=True)
-        #datan = {"title":"Test Title"}
-        context = {
-                'companies':serializer_class.data,
-            }
-        return render(
-            request,
-            'company_list.html',
-            context
-        )
+class PostDetailView(DetailView):
+    model = Company
+    template_name = 'CompanyManagement/detailsCompany.html'

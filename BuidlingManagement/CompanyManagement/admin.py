@@ -84,5 +84,3 @@ class SalaryPaperAdmin(admin.ModelAdmin):
      )
     pass
 admin.site.register(SalaryPaper, SalaryPaperAdmin)
-
-

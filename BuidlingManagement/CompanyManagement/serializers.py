@@ -12,7 +12,7 @@ from .models import SalaryPeriodDetails
 
 # import Company class for example
 # Serializers define the API representation.
-class CompanySerializer(serializers.HyperlinkedModelSerializer):
+class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
         fields = [  
@@ -50,7 +50,7 @@ class CompanySerializer(serializers.HyperlinkedModelSerializer):
 
 
 # HyperlinkedModelSerializer được sử dụng để tạo endpoint
-class StaffSerializer(serializers.HyperlinkedModelSerializer):
+class StaffSerializer(serializers.ModelSerializer):
     class Meta:
         model = Staff
         fields = [
@@ -69,7 +69,7 @@ class StaffSerializer(serializers.HyperlinkedModelSerializer):
             'updated_at',
         ]
 
-class SalaryTemplateSerializer(serializers.HyperlinkedModelSerializer):
+class SalaryTemplateSerializer(serializers.ModelSerializer):
     class Meta:
         model = SalaryTemplate
         fields = [
@@ -78,7 +78,7 @@ class SalaryTemplateSerializer(serializers.HyperlinkedModelSerializer):
             'salary',
         ]
 
-class UnitSerializer(serializers.HyperlinkedModelSerializer):
+class UnitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Unit
         fields = [
@@ -86,7 +86,7 @@ class UnitSerializer(serializers.HyperlinkedModelSerializer):
             'name',
         ]
 
-class TitleSerializer(serializers.HyperlinkedModelSerializer):
+class TitleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Title
         fields = [
@@ -94,7 +94,7 @@ class TitleSerializer(serializers.HyperlinkedModelSerializer):
             'name',
         ]
 
-class SalaryPaperSerializer(serializers.HyperlinkedModelSerializer):
+class SalaryPaperSerializer(serializers.ModelSerializer):
     class Meta:
         model = SalaryPaper
         fields = [
@@ -103,7 +103,7 @@ class SalaryPaperSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
-class WorkDaySerializer(serializers.HyperlinkedModelSerializer):
+class WorkDaySerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkDay
         fields = [
@@ -124,7 +124,7 @@ class WorkDaySerializer(serializers.HyperlinkedModelSerializer):
         validated_data['updated_by'] = self.get_request_user()
         return super().update(instance, validated_data)
     
-class SalaryPeriodDetailsSerializer(serializers.HyperlinkedModelSerializer):
+class SalaryPeriodDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = SalaryPeriodDetails
         fields = '__all__'

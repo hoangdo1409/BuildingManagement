@@ -1,6 +1,7 @@
 django==3.2.10
 psycopg2==2.9.5
-pip install djangorestframework
-pip install markdown
-pip install django-filter
-pip install python-dotenv
+djangorestframework
+markdown
+django-filter
+python-dotenv
+drf_yasg

@@ -172,7 +172,7 @@ class Company(models.Model):
         verbose_name = _("Công Ty")
         verbose_name_plural = _("Những Công Ty")
 
-    def __str__(self):
+    def __str__(self):  
         return self.name
 
     def get_child_company(self):
@@ -193,14 +193,12 @@ class Title(models.Model):
                             help_text="Id Đơn Vi")
 
     name = models.CharField(max_length=1024,
-                            editable=True,
                             blank=False,
                             null=False,
                             default="Chức danh hiện tại",
                             help_text="Tên Chức danh")
 
     code = models.CharField(max_length=1024,
-                            editable=True,
                             blank=True,
                             null=True,
                             help_text="Mã chức danh")
@@ -336,8 +334,6 @@ class SalaryTemplate(models.Model):
 
     name = models.CharField(max_length=1024,
                             editable=True,
-                            blank=False,
-                            null=False,
                             default="Tên Lương mẫu",
                             help_text="Tên lương mẫu")
 

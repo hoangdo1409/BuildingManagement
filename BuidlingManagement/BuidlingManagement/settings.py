@@ -59,7 +59,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'BuidlingManagement.urls'
 
 TEMPLATES_DIRS = (
-    os.path.join(BASE_DIR, 'BuildingManagement/CompanyManagement/template/')
+    os.path.join(BASE_DIR, 'BuildingManagement/CompanyManagement/templates')
 )
 
 TEMPLATES = [
